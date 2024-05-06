@@ -16,7 +16,10 @@ function App() {
   };
 
   const handleUserLocation = () => {
-    if (navigator.geolocation) {
+    if (!navigator.geolocation){
+      console.error('Twoja przeglądarka nie obsługuje Geolokalizacji.');
+
+    }
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         setMarkerPosition([latitude, longitude]);
@@ -26,18 +29,14 @@ function App() {
       }, (error) => {
         console.error('Błąd pobierania lokalizacji:', error);
       });
-    } else {
-      console.error('Twoja przeglądarka nie obsługuje Geolokalizacji.');
-    }
+
   };
-
-
 
   return (
     <>
-      <div style={{ position: 'relative', height: '800px', width: '1000px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>To change the location, drag the marker</h1>
-      <h2 style={{ textAlign: 'center', marginTop: '20px' }}>To check current position click on the marker</h2>
+      <div className='container'>
+      <h1 className='text'>To change the location, drag the marker</h1>
+      <h2 className='text'>To check current position click on the marker</h2>
         <MapContainer
           center={markerPosition}
           zoom={5}
@@ -65,11 +64,11 @@ function App() {
           </Marker>
         </MapContainer>
       </div>
-      <button onClick={handleUserLocation} style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000 }}>
+      <button onClick={handleUserLocation} className='button'>
         Get data for my location
       </button>
 
-      <div style={{ flex: 1, width: '100%', textAlign: 'center' }}>
+      <div className='table-container'>
         <Table longitude={markerPosition[1]} latitude={markerPosition[0]} />
       </div>
     </>
