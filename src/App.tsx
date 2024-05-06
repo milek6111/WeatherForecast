@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import { Table } from './components/Table';
-import { MapContainer, Marker, Popup, TileLayer, useMapEvents, } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
-import L from 'leaflet';
 
 function App() {
   const [markerPosition, setMarkerPosition] = useState<[number, number]>([52.237, 21.02]);
